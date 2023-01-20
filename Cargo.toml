@@ -3,6 +3,14 @@ name = "dioxus-material-icons"
 version = "0.1.0"
 edition = "2021"
 
+[[example]]
+name = "button-example"
+path = "examples/button-example.rs"
+
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
+dioxus = "0.3.1"
+
+[dev-dependencies]
+dioxus-desktop = "0.3.0"

@@ -4,12 +4,24 @@ use dioxus::prelude::*;
 
 #[derive(Props, PartialEq)]
 pub struct MaterialIconStylesheetProps<'a> {
-    self_hosted: Option<()>,
+    variation: MaterialIconVariation<'a>,
+}
+
+#[derive(PartialEq)]
+pub enum MaterialIconVariation<'a> {
+    Regular,
+    Outlined,
+    Round,
+    Sharp,
+    TwoTone,
 }
 
 pub fn MaterialIconStylesheet<'a>(cx: Scope<'a, MaterialIconStylesheetProps<'a>>) -> Element<'a> {
     cx.render(rsx!(
-        link { href: "https://fonts.googleapis.com/icon?family=Material+Icons", rel: "stylesheet" }
+        match &cx.props.variation {
+            MaterialIconVariation::Regular => rsx!(link { href: "https://fonts.googleapis.com/icon?family=Material+Icons", rel: "stylesheet" }),
+            MaterialIconVariation::Outlined => rsx!(),
+        }
     ))
 }
 

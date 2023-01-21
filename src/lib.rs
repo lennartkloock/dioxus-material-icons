@@ -3,26 +3,34 @@
 use dioxus::prelude::*;
 
 #[derive(Props, PartialEq)]
-pub struct MaterialIconStylesheetProps {
-    variation: MaterialIconVariation,
+pub struct MaterialIconStylesheetProps<'a> {
+    variant: MaterialIconVariant<'a>,
 }
 
 #[derive(PartialEq)]
-pub enum MaterialIconVariation {
+pub enum MaterialIconVariant<'a> {
     Regular,
     Outlined,
     Round,
     Sharp,
     TwoTone,
+    SelfHosted {
+        file: &'a str,
+    },
 }
 
-pub fn MaterialIconStylesheet(cx: Scope<MaterialIconStylesheetProps>) -> Element {
-    let href = match &cx.props.variation {
-        MaterialIconVariation::Regular => "https://fonts.googleapis.com/icon?family=Material+Icons",
-        MaterialIconVariation::Outlined => "https://fonts.googleapis.com/icon?family=Material+Icons+Outlined",
-        MaterialIconVariation::Round => "https://fonts.googleapis.com/icon?family=Material+Icons+Round",
-        MaterialIconVariation::Sharp => "https://fonts.googleapis.com/icon?family=Material+Icons+Sharp",
-        MaterialIconVariation::TwoTone => "https://fonts.googleapis.com/icon?family=Material+Icons+Two+Tone",
+pub fn MaterialIconStylesheet<'a>(cx: Scope<'a, MaterialIconStylesheetProps<'a>>) -> Element<'a> {
+    let href = match &cx.props.variant {
+        MaterialIconVariant::SelfHosted { file } => {
+            return cx.render(rsx!(
+                style { format!(include_str!("./self-hosted-styles.css"), file) }
+            ));
+        }
+        MaterialIconVariant::Regular => "https://fonts.googleapis.com/icon?family=Material+Icons",
+        MaterialIconVariant::Outlined => "https://fonts.googleapis.com/icon?family=Material+Icons+Outlined",
+        MaterialIconVariant::Round => "https://fonts.googleapis.com/icon?family=Material+Icons+Round",
+        MaterialIconVariant::Sharp => "https://fonts.googleapis.com/icon?family=Material+Icons+Sharp",
+        MaterialIconVariant::TwoTone => "https://fonts.googleapis.com/icon?family=Material+Icons+Two+Tone",
     };
     cx.render(rsx!(
         link { href: "{href}", rel: "stylesheet" }

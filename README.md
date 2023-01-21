@@ -49,4 +49,8 @@ MaterialIcon {
 
 - [dioxus-free-icons](https://crates.io/crates/dioxus-free-icons) (Support for other icon packs)
 
-&copy; Lennart Kloock
+<hr>
+
+This software is licensed under the terms of the MIT License.  
+Note: All Material Icons are licensed under the Apache License 2.0.  
+&copy; 2023 Lennart Kloock

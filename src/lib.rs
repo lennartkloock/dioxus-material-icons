@@ -26,7 +26,7 @@
 //! After that you can use the `MaterialIcon` component like you would expect it:
 //!
 //! ```no_rust
-//! MaterialIcon { name: "face" }
+//! MaterialIcon { name: "settings" }
 //! ```
 //!
 //! You can additionally specify the color and size.

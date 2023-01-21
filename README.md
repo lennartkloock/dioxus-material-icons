@@ -24,7 +24,7 @@ Have a look at the docs for more options like self-hosting the icon font file.
 After that you can use the `MaterialIcon` component like you would expect it:
 
 ```
-MaterialIcon { name: "face" }
+MaterialIcon { name: "settings" }
 ```
 
 You can additionally specify the color and size.

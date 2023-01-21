@@ -14,12 +14,12 @@ pub enum MaterialIconVariant<'a> {
     Round,
     Sharp,
     TwoTone,
-    SelfHosted { file: &'a str },
+    SelfHosted(&'a str),
 }
 
 pub fn MaterialIconStylesheet<'a>(cx: Scope<'a, MaterialIconStylesheetProps<'a>>) -> Element<'a> {
     let href = match &cx.props.variant {
-        MaterialIconVariant::SelfHosted { file } => {
+        MaterialIconVariant::SelfHosted(file) => {
             return cx.render(rsx!(
                 style { format!(include_str!("./self-hosted-styles.css"), file) }
             ));

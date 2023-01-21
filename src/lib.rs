@@ -21,7 +21,7 @@
 //! MaterialIconStylesheet { }
 //! ```
 //!
-//! Have a look at the docs for more options like self-hosting the icon font file.
+//! Have a look at the [`MaterialIconStylesheet`](MaterialIconStylesheet) docs for more options like self-hosting the icon font file.
 //!
 //! After that you can use the `MaterialIcon` component like you would expect it:
 //!
@@ -51,10 +51,12 @@
 //!
 //! - [dioxus-free-icons](https://crates.io/crates/dioxus-free-icons) (Support for other icon packs)
 //!
-//! <hr>
+//! ## 📜 License
 //!
 //! This software is licensed under the terms of the MIT License.
+//!
 //! Note: All Material Icons are licensed under the Apache License 2.0.
+//!
 //! &copy; 2023 Lennart Kloock
 
 use dioxus::prelude::*;
@@ -65,9 +67,9 @@ pub struct MaterialIconStylesheetProps<'a> {
     variant: MaterialIconVariant<'a>,
 }
 
-/// Different possible variants of the Material Icon font
+/// Different variants of the Material Icon font
 ///
-/// See all variants here: https://fonts.google.com/icons?selected=Material+Icons
+/// See all variants [here](https://fonts.google.com/icons?selected=Material+Icons).
 #[derive(PartialEq)]
 pub enum MaterialIconVariant<'a> {
     /// Regular
@@ -83,7 +85,7 @@ pub enum MaterialIconVariant<'a> {
     /// Self hosted font file
     ///
     /// Provide an url to a ttf or otf file.
-    /// You can download the files here: https://github.com/google/material-design-icons/tree/master/font
+    /// You can download the files [here](https://github.com/google/material-design-icons/tree/master/font).
     SelfHosted(&'a str),
 }
 
@@ -92,10 +94,11 @@ pub enum MaterialIconVariant<'a> {
 /// This component includes the Material Icon stylesheet.
 /// This is required to render all Material Icons correctly.
 ///
-/// You can provide a variant as a prop. (e.g. Round)
+/// You can provide a variant as a prop (e.g. Round).
 /// When you want to provide your own self-hosted font file,
 /// please use [`MaterialIconVariant::SelfHosted`](MaterialIconVariant::SelfHosted) and pass the
-/// file path/url to your .ttf or .otf file to it.
+/// file path or url to your .ttf or .otf file to it.
+/// See the [button example](https://github.com/lennartkloock/dioxus-material-icons/blob/main/examples/button.rs).
 pub fn MaterialIconStylesheet<'a>(cx: Scope<'a, MaterialIconStylesheetProps<'a>>) -> Element<'a> {
     let href = match &cx.props.variant {
         MaterialIconVariant::SelfHosted(file) => {
@@ -128,7 +131,7 @@ pub fn MaterialIconStylesheet<'a>(cx: Scope<'a, MaterialIconStylesheetProps<'a>>
 pub struct MaterialIconProps<'a> {
     /// Name (e.g. `home`)
     ///
-    /// Browse all icons here: https://fonts.google.com/icons?selected=Material+Icons
+    /// Browse all icons [here](https://fonts.google.com/icons?selected=Material+Icons).
     name: &'a str,
     /// Size in pixels
     ///
@@ -142,23 +145,17 @@ pub struct MaterialIconProps<'a> {
     color: MaterialIconColor<'a>,
 }
 
-/// As described here: https://developers.google.com/fonts/docs/material_icons#styling_icons_in_material_design
+/// Colors of Material Icons
+///
+/// As described [here](https://developers.google.com/fonts/docs/material_icons#styling_icons_in_material_design).
 #[derive(PartialEq)]
 pub enum MaterialIconColor<'a> {
-    /// Dark
-    ///
     /// For using icons as black on a light background.
     Dark,
-    /// Dark inactive
-    ///
     /// For using icons as black on a light background.
     DarkInactive,
-    /// Light
-    ///
     /// For using icons as white on a dark background.
     Light,
-    /// Light inactive
-    ///
     /// For using icons as white on a dark background.
     LightInactive,
     /// Custom color, any valid CSS color

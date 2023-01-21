@@ -1,10 +1,10 @@
 #![allow(non_snake_case)]
 
-//! # Dioxus Material Icons
+//! # 🧬 Dioxus Material Icons
 //!
 //! This project provides a simple but configurable component to render Google's Material Icons in Dioxus.
 //!
-//! ## How to get started
+//! ## 🚀 How to get started
 //!
 //! `cargo add dioxus-material-icons`
 //!
@@ -39,11 +39,11 @@
 //! }
 //! ```
 //!
-//! ## Examples
+//! ## 💡 Examples
 //!
 //! - [Button Example](https://github.com/lennartkloock/dioxus-material-icons/blob/main/examples/button.rs)
 //!
-//! ## Useful links
+//! ## 🔗 Useful links
 //!
 //! - [Overview of all icons](https://fonts.google.com/icons?selected=Material+Icons) (including names)
 //!

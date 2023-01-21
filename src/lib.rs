@@ -59,18 +59,31 @@
 
 use dioxus::prelude::*;
 
+/// Props for the [`MaterialIconStylesheet`](MaterialIconStylesheet) component
 #[derive(Props, PartialEq)]
 pub struct MaterialIconStylesheetProps<'a> {
     variant: MaterialIconVariant<'a>,
 }
 
+/// Different possible variants of the Material Icon font
+///
+/// See all variants here: https://fonts.google.com/icons?selected=Material+Icons
 #[derive(PartialEq)]
 pub enum MaterialIconVariant<'a> {
+    /// Regular
     Regular,
+    /// Outlined
     Outlined,
+    /// Round
     Round,
+    /// Sharp
     Sharp,
+    /// Two tone
     TwoTone,
+    /// Self hosted font file
+    ///
+    /// Provide a url to a ttf or otf file.
+    /// You can download the files here: https://github.com/google/material-design-icons/tree/master/font
     SelfHosted(&'a str),
 }
 

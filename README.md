@@ -12,8 +12,8 @@ This project introduces two components:
 2. `MaterialIcon`
 
 To be able to use the `MaterialIcon` component anywhere in your code, you first have to include
-a `MaterialIconStylesheet` component. When you want to use the default settings, just add it to your `App` component
-like this:
+a `MaterialIconStylesheet` component. When you want to use the default settings, just add it to your app's root
+component like this:
 
 ```
 MaterialIconStylesheet { }

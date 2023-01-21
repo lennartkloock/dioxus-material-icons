@@ -14,8 +14,8 @@
 //! 2. [`MaterialIcon`](MaterialIcon)
 //!
 //! To be able to use the [`MaterialIcon`](MaterialIcon) component anywhere in your code, you first have to include
-//! a [`MaterialIconStylesheet`](MaterialIconStylesheet) component. When you want to use the default settings, just add it to your `App` component
-//! like this:
+//! a [`MaterialIconStylesheet`](MaterialIconStylesheet) component. When you want to use the default settings,
+//! just add it to your app's root component like this:
 //!
 //! ```no_rust
 //! MaterialIconStylesheet { }

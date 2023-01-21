@@ -170,21 +170,26 @@ impl<'a> From<&'a str> for MaterialIconColor<'a> {
     }
 }
 
+impl MaterialIconColor<'_> {
+    pub fn to_css_color(&self) -> &str {
+        match self {
+            MaterialIconColor::Dark => "rgba(0, 0, 0, 0.54)",
+            MaterialIconColor::DarkInactive => "rgba(0, 0, 0, 0.26)",
+            MaterialIconColor::Light => "rgba(255, 255, 255, 1)",
+            MaterialIconColor::LightInactive => "rgba(255, 255, 255, 0.3)",
+            MaterialIconColor::Custom(c) => c,
+        }
+    }
+}
+
 /// Material Icon component
 ///
 /// This component can be used to render a Material Icon.
 pub fn MaterialIcon<'a>(cx: Scope<'a, MaterialIconProps<'a>>) -> Element<'a> {
-    let color = match cx.props.color {
-        MaterialIconColor::Dark => "rgba(0, 0, 0, 0.54)",
-        MaterialIconColor::DarkInactive => "rgba(0, 0, 0, 0.26)",
-        MaterialIconColor::Light => "rgba(255, 255, 255, 1)",
-        MaterialIconColor::LightInactive => "rgba(255, 255, 255, 0.3)",
-        MaterialIconColor::Custom(c) => c,
-    };
     cx.render(rsx!(
         span {
             class: "material-icons material-icons-outlined material-icons-round material-icons-sharp material-icons-two-tone md-48",
-            style: "font-size: {cx.props.size}px; color: {color}",
+            style: "font-size: {cx.props.size}px; color: {cx.props.color.to_css_color()}; user-select: none;",
             cx.props.name
         }
     ))

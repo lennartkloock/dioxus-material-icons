@@ -82,11 +82,20 @@ pub enum MaterialIconVariant<'a> {
     TwoTone,
     /// Self hosted font file
     ///
-    /// Provide a url to a ttf or otf file.
+    /// Provide an url to a ttf or otf file.
     /// You can download the files here: https://github.com/google/material-design-icons/tree/master/font
     SelfHosted(&'a str),
 }
 
+/// Stylesheet component
+///
+/// This component includes the Material Icon stylesheet.
+/// This is required to render all Material Icons correctly.
+///
+/// You can provide a variant as a prop. (e.g. Round)
+/// When you want to provide your own self-hosted font file,
+/// please use [`MaterialIconVariant::SelfHosted`](MaterialIconVariant::SelfHosted) and pass the
+/// file path/url to your .ttf or .otf file to it.
 pub fn MaterialIconStylesheet<'a>(cx: Scope<'a, MaterialIconStylesheetProps<'a>>) -> Element<'a> {
     let href = match &cx.props.variant {
         MaterialIconVariant::SelfHosted(file) => {
@@ -114,21 +123,47 @@ pub fn MaterialIconStylesheet<'a>(cx: Scope<'a, MaterialIconStylesheetProps<'a>>
     }))
 }
 
+/// Props for the [`MaterialIcon`](MaterialIcon) component
 #[derive(Props, PartialEq)]
 pub struct MaterialIconProps<'a> {
+    /// Name (e.g. `home`)
+    ///
+    /// Browse all icons here: https://fonts.google.com/icons?selected=Material+Icons
     name: &'a str,
+    /// Size in pixels
+    ///
+    /// Default is 24.
     #[props(default = 24)]
     size: u32,
+    /// Color
+    ///
+    /// Default is [`MaterialIconColor::Dark`](MaterialIconColor::Dark).
     #[props(default = MaterialIconColor::Dark)]
     color: MaterialIconColor<'a>,
 }
 
+/// As described here: https://developers.google.com/fonts/docs/material_icons#styling_icons_in_material_design
 #[derive(PartialEq)]
 pub enum MaterialIconColor<'a> {
+    /// Dark
+    ///
+    /// For using icons as black on a light background.
     Dark,
+    /// Dark inactive
+    ///
+    /// For using icons as black on a light background.
     DarkInactive,
+    /// Light
+    ///
+    /// For using icons as white on a dark background.
     Light,
+    /// Light inactive
+    ///
+    /// For using icons as white on a dark background.
     LightInactive,
+    /// Custom color, any valid CSS color
+    ///
+    /// E.g.: `#0000ff` or `red`
     Custom(&'a str),
 }
 
@@ -138,6 +173,9 @@ impl<'a> From<&'a str> for MaterialIconColor<'a> {
     }
 }
 
+/// Material Icon component
+///
+/// This component can be used to render a Material Icon.
 pub fn MaterialIcon<'a>(cx: Scope<'a, MaterialIconProps<'a>>) -> Element<'a> {
     let color = match cx.props.color {
         MaterialIconColor::Dark => "rgba(0, 0, 0, 0.54)",

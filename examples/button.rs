@@ -14,7 +14,7 @@ fn main() {
 }
 
 fn App(cx: Scope) -> Element {
-    let show_face = use_state(&cx, || false);
+    let is_blue = use_state(&cx, || false);
 
     cx.render(rsx!(
         MaterialIconStylesheet {
@@ -23,8 +23,8 @@ fn App(cx: Scope) -> Element {
         }
         button {
             style: "padding: 10",
-            onclick: move |_| show_face.set(!show_face),
-            if *show_face.get() {
+            onclick: move |_| is_blue.set(!is_blue),
+            if *is_blue.get() {
                 // Render material icon "home" in blue
                 rsx!(MaterialIcon { name: "home", color: "blue".into() })
             } else {

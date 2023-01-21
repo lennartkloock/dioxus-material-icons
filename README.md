@@ -1,5 +1,9 @@
 # 🧬 Dioxus Material Icons
 
+<a href="https://crates.io/crates/dioxus">
+    <img src="https://img.shields.io/crates/v/dioxus-material-icons.svg" alt="Crates.io version" />
+</a>
+
 This project provides a simple but configurable component to render Google's Material Icons in Dioxus.
 
 ## 🚀 How to get started

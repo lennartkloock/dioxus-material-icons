@@ -67,7 +67,7 @@ pub struct MaterialIconStylesheetProps<'a> {
     variant: MaterialIconVariant<'a>,
 }
 
-/// Different variants of the Material Icon font
+/// Variants (also called categories) of the Material Icon font
 ///
 /// See all variants [here](https://fonts.google.com/icons?selected=Material+Icons).
 #[derive(PartialEq)]

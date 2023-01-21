@@ -14,9 +14,7 @@ pub enum MaterialIconVariant<'a> {
     Round,
     Sharp,
     TwoTone,
-    SelfHosted {
-        file: &'a str,
-    },
+    SelfHosted { file: &'a str },
 }
 
 pub fn MaterialIconStylesheet<'a>(cx: Scope<'a, MaterialIconStylesheetProps<'a>>) -> Element<'a> {
@@ -27,14 +25,23 @@ pub fn MaterialIconStylesheet<'a>(cx: Scope<'a, MaterialIconStylesheetProps<'a>>
             ));
         }
         MaterialIconVariant::Regular => "https://fonts.googleapis.com/icon?family=Material+Icons",
-        MaterialIconVariant::Outlined => "https://fonts.googleapis.com/icon?family=Material+Icons+Outlined",
-        MaterialIconVariant::Round => "https://fonts.googleapis.com/icon?family=Material+Icons+Round",
-        MaterialIconVariant::Sharp => "https://fonts.googleapis.com/icon?family=Material+Icons+Sharp",
-        MaterialIconVariant::TwoTone => "https://fonts.googleapis.com/icon?family=Material+Icons+Two+Tone",
+        MaterialIconVariant::Outlined => {
+            "https://fonts.googleapis.com/icon?family=Material+Icons+Outlined"
+        }
+        MaterialIconVariant::Round => {
+            "https://fonts.googleapis.com/icon?family=Material+Icons+Round"
+        }
+        MaterialIconVariant::Sharp => {
+            "https://fonts.googleapis.com/icon?family=Material+Icons+Sharp"
+        }
+        MaterialIconVariant::TwoTone => {
+            "https://fonts.googleapis.com/icon?family=Material+Icons+Two+Tone"
+        }
     };
-    cx.render(rsx!(
-        link { href: "{href}", rel: "stylesheet" }
-    ))
+    cx.render(rsx!(link {
+        href: "{href}",
+        rel: "stylesheet"
+    }))
 }
 
 #[derive(Props, PartialEq)]

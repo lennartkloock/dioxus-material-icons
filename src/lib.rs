@@ -3,12 +3,12 @@
 use dioxus::prelude::*;
 
 #[derive(Props, PartialEq)]
-pub struct MaterialIconStylesheetProps<'a> {
-    variation: MaterialIconVariation<'a>,
+pub struct MaterialIconStylesheetProps {
+    variation: MaterialIconVariation,
 }
 
 #[derive(PartialEq)]
-pub enum MaterialIconVariation<'a> {
+pub enum MaterialIconVariation {
     Regular,
     Outlined,
     Round,
@@ -16,12 +16,16 @@ pub enum MaterialIconVariation<'a> {
     TwoTone,
 }
 
-pub fn MaterialIconStylesheet<'a>(cx: Scope<'a, MaterialIconStylesheetProps<'a>>) -> Element<'a> {
+pub fn MaterialIconStylesheet(cx: Scope<MaterialIconStylesheetProps>) -> Element {
+    let href = match &cx.props.variation {
+        MaterialIconVariation::Regular => "https://fonts.googleapis.com/icon?family=Material+Icons",
+        MaterialIconVariation::Outlined => "https://fonts.googleapis.com/icon?family=Material+Icons+Outlined",
+        MaterialIconVariation::Round => "https://fonts.googleapis.com/icon?family=Material+Icons+Round",
+        MaterialIconVariation::Sharp => "https://fonts.googleapis.com/icon?family=Material+Icons+Sharp",
+        MaterialIconVariation::TwoTone => "https://fonts.googleapis.com/icon?family=Material+Icons+Two+Tone",
+    };
     cx.render(rsx!(
-        match &cx.props.variation {
-            MaterialIconVariation::Regular => rsx!(link { href: "https://fonts.googleapis.com/icon?family=Material+Icons", rel: "stylesheet" }),
-            MaterialIconVariation::Outlined => rsx!(),
-        }
+        link { href: "{href}", rel: "stylesheet" }
     ))
 }
 
@@ -59,7 +63,7 @@ pub fn MaterialIcon<'a>(cx: Scope<'a, MaterialIconProps<'a>>) -> Element<'a> {
     };
     cx.render(rsx!(
         span {
-            class: "material-icons md-48",
+            class: "material-icons material-icons-outlined material-icons-round material-icons-sharp material-icons-two-tone md-48",
             style: "font-size: {cx.props.size}px; color: {color}",
             cx.props.name
         }

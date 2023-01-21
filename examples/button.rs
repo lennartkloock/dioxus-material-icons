@@ -11,7 +11,7 @@ fn App(cx: Scope) -> Element {
     let show_face = use_state(&cx, || false);
 
     cx.render(rsx!(
-        MaterialIconStylesheet {  }
+        MaterialIconStylesheet { }
         button {
             style: "padding: 10",
             onclick: move |_| show_face.set(!show_face),

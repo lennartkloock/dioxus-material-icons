@@ -66,7 +66,7 @@ use dioxus::prelude::*;
 #[derive(Props, PartialEq)]
 pub struct MaterialIconStylesheetProps<'a> {
     #[props(default = MaterialIconVariant::Regular)]
-    variant: MaterialIconVariant<'a>,
+    pub variant: MaterialIconVariant<'a>,
 }
 
 /// Variants (also called categories) of the Material Icon font
@@ -75,6 +75,8 @@ pub struct MaterialIconStylesheetProps<'a> {
 #[derive(PartialEq)]
 pub enum MaterialIconVariant<'a> {
     /// Regular
+    ///
+    /// Also called Filled.
     Regular,
     /// Outlined
     Outlined,
@@ -134,17 +136,17 @@ pub struct MaterialIconProps<'a> {
     /// Name (e.g. `home`)
     ///
     /// Browse all icons [here](https://fonts.google.com/icons?selected=Material+Icons).
-    name: &'a str,
+    pub name: &'a str,
     /// Size in pixels
     ///
     /// Default is 24.
     #[props(default = 24)]
-    size: u32,
+    pub size: u32,
     /// Color
     ///
     /// Default is [`MaterialIconColor::Dark`](MaterialIconColor::Dark).
     #[props(default = MaterialIconColor::Dark, into)]
-    color: MaterialIconColor<'a>,
+    pub color: MaterialIconColor<'a>,
 }
 
 /// Colors of Material Icons

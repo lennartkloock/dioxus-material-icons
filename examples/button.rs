@@ -26,7 +26,7 @@ fn App(cx: Scope) -> Element {
             onclick: move |_| is_blue.set(!is_blue),
             if *is_blue.get() {
                 // Render material icon "home" in blue
-                rsx!(MaterialIcon { name: "home", color: "blue".into() })
+                rsx!(MaterialIcon { name: "home", color: "blue" })
             } else {
                 // Render material icon "home" in default color
                 rsx!(MaterialIcon { name: "home" })

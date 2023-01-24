@@ -65,6 +65,7 @@ use dioxus::prelude::*;
 /// Props for the [`MaterialIconStylesheet`](MaterialIconStylesheet) component
 #[derive(Props, PartialEq)]
 pub struct MaterialIconStylesheetProps<'a> {
+    #[props(default = MaterialIconVariant::Regular)]
     variant: MaterialIconVariant<'a>,
 }
 
@@ -142,7 +143,7 @@ pub struct MaterialIconProps<'a> {
     /// Color
     ///
     /// Default is [`MaterialIconColor::Dark`](MaterialIconColor::Dark).
-    #[props(default = MaterialIconColor::Dark)]
+    #[props(default = MaterialIconColor::Dark, into)]
     color: MaterialIconColor<'a>,
 }
 

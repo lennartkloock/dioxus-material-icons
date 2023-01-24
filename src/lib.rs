@@ -75,6 +75,8 @@ pub struct MaterialIconStylesheetProps<'a> {
 #[derive(PartialEq)]
 pub enum MaterialIconVariant<'a> {
     /// Regular
+    ///
+    /// Also called Filled.
     Regular,
     /// Outlined
     Outlined,

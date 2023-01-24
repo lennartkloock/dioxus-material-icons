@@ -1,4 +1,5 @@
 #![allow(non_snake_case)]
+#![warn(missing_docs)]
 
 //! # 🧬 Dioxus Material Icons
 //!
@@ -171,6 +172,7 @@ impl<'a> From<&'a str> for MaterialIconColor<'a> {
 }
 
 impl MaterialIconColor<'_> {
+    /// Converts the color to its corresponding CSS color
     pub fn to_css_color(&self) -> &str {
         match self {
             MaterialIconColor::Dark => "rgba(0, 0, 0, 0.54)",

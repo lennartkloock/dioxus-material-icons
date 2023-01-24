@@ -143,7 +143,7 @@ pub struct MaterialIconProps<'a> {
     /// Color
     ///
     /// Default is [`MaterialIconColor::Dark`](MaterialIconColor::Dark).
-    #[props(default = MaterialIconColor::Dark)]
+    #[props(default = MaterialIconColor::Dark, into)]
     color: MaterialIconColor<'a>,
 }
 

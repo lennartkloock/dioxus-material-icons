@@ -22,8 +22,9 @@ fn App(cx: Scope) -> Element {
             variant: MaterialIconVariant::SelfHosted("examples/assets/MaterialIcons-Regular.ttf")
         }
         button {
-            style: "padding: 10",
+            style: "padding: 10; font-size: 48px;",
             onclick: move |_| is_blue.set(!is_blue),
+            // The size prop was omitted, so both icons inherit their size from the button element above
             if *is_blue.get() {
                 // Render material icon "home" in blue
                 rsx!(MaterialIcon { name: "home", color: "blue" })

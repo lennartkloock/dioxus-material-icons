@@ -147,8 +147,8 @@ pub struct MaterialIconProps<'a> {
     pub size: u32,
     /// Color
     ///
-    /// Default is [`MaterialIconColor::Dark`](MaterialIconColor::Dark).
-    #[props(default = MaterialIconColor::Dark, into)]
+    /// Default is [`MaterialIconColor::Inherit`](MaterialIconColor::Inherit).
+    #[props(default = MaterialIconColor::Inherit, into)]
     pub color: MaterialIconColor<'a>,
 }
 
@@ -157,6 +157,8 @@ pub struct MaterialIconProps<'a> {
 /// As described [here](https://developers.google.com/fonts/docs/material_icons#styling_icons_in_material_design).
 #[derive(PartialEq)]
 pub enum MaterialIconColor<'a> {
+    /// Inherits the color. (CSS value: `inherit`)
+    Inherit,
     /// For using icons as black on a light background.
     Dark,
     /// For using icons as black on a light background.
@@ -181,6 +183,7 @@ impl MaterialIconColor<'_> {
     /// Converts the color to its corresponding CSS color
     pub fn to_css_color(&self) -> &str {
         match self {
+            MaterialIconColor::Inherit => "inherit",
             MaterialIconColor::Dark => "rgba(0, 0, 0, 0.54)",
             MaterialIconColor::DarkInactive => "rgba(0, 0, 0, 0.26)",
             MaterialIconColor::Light => "rgba(255, 255, 255, 1)",

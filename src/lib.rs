@@ -194,8 +194,17 @@ impl MaterialIconColor<'_> {
 /// This component can be used to render a Material Icon.
 pub fn MaterialIcon<'a>(cx: Scope<'a, MaterialIconProps<'a>>) -> Element<'a> {
     // The `font-size` attribute has to be explicitly declared as `inherit` because the stylesheet sets a default of 24px
-    let css_size = cx.props.size.map(|s| format!("{s}px")).unwrap_or("inherit".to_string());
-    let css_color = cx.props.color.as_ref().map(|c| format!("color: {};", c.to_css_color())).unwrap_or_default();
+    let css_size = cx
+        .props
+        .size
+        .map(|s| format!("{s}px"))
+        .unwrap_or("inherit".to_string());
+    let css_color = cx
+        .props
+        .color
+        .as_ref()
+        .map(|c| format!("color: {};", c.to_css_color()))
+        .unwrap_or_default();
     cx.render(rsx!(
         span {
             class: "material-icons material-icons-outlined material-icons-round material-icons-sharp material-icons-two-tone md-48",

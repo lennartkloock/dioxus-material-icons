@@ -198,7 +198,7 @@ pub fn MaterialIcon<'a>(cx: Scope<'a, MaterialIconProps<'a>>) -> Element<'a> {
         .props
         .size
         .map(|s| format!("{s}px"))
-        .unwrap_or("inherit".to_string());
+        .unwrap_or_else(|| "inherit".to_string());
     let css_color = cx
         .props
         .color

@@ -142,14 +142,13 @@ pub struct MaterialIconProps<'a> {
     pub name: &'a str,
     /// Size in pixels
     ///
-    /// Default is 24.
-    #[props(default = 24)]
-    pub size: u32,
+    /// Optional
+    pub size: Option<u32>,
     /// Color
     ///
-    /// Default is [`MaterialIconColor::Dark`](MaterialIconColor::Dark).
-    #[props(default = MaterialIconColor::Dark, into)]
-    pub color: MaterialIconColor<'a>,
+    /// Optional
+    #[props(into)]
+    pub color: Option<MaterialIconColor<'a>>,
 }
 
 /// Colors of Material Icons
@@ -194,10 +193,22 @@ impl MaterialIconColor<'_> {
 ///
 /// This component can be used to render a Material Icon.
 pub fn MaterialIcon<'a>(cx: Scope<'a, MaterialIconProps<'a>>) -> Element<'a> {
+    // The `font-size` attribute has to be explicitly declared as `inherit` because the stylesheet sets a default of 24px
+    let css_size = cx
+        .props
+        .size
+        .map(|s| format!("{s}px"))
+        .unwrap_or("inherit".to_string());
+    let css_color = cx
+        .props
+        .color
+        .as_ref()
+        .map(|c| format!("color: {};", c.to_css_color()))
+        .unwrap_or_default();
     cx.render(rsx!(
         span {
             class: "material-icons material-icons-outlined material-icons-round material-icons-sharp material-icons-two-tone md-48",
-            style: "font-size: {cx.props.size}px; color: {cx.props.color.to_css_color()}; user-select: none;",
+            style: "font-size: {css_size}; {css_color} user-select: none;",
             cx.props.name
         }
     ))

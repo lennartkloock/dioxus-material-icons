@@ -20,4 +20,4 @@ path = "examples/button.rs"
 dioxus = "0.3.1"
 
 [dev-dependencies]
-dioxus-desktop = "0.3.0"
+dioxus-desktop = "0.4.0"

@@ -14,10 +14,8 @@ readme = "README.md"
 name = "button"
 path = "examples/button.rs"
 
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
-
 [dependencies]
-dioxus = "0.3.1"
+dioxus = "0.4.3"
 
 [dev-dependencies]
-dioxus-desktop = "0.3.0"
+dioxus-desktop = "0.4.3"

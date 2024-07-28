@@ -63,20 +63,20 @@
 use dioxus::prelude::*;
 
 /// Props for the [`MaterialIconStylesheet`](MaterialIconStylesheet) component
-#[derive(Props, PartialEq)]
-pub struct MaterialIconStylesheetProps<'a> {
+#[derive(Props, PartialEq, Clone)]
+pub struct MaterialIconStylesheetProps {
     /// Variant prop for the [`MaterialIconStylesheet`](MaterialIconStylesheet) component
     ///
     /// See [`MaterialIconVariant`](MaterialIconVariant) for more information.
     #[props(default = MaterialIconVariant::Regular)]
-    pub variant: MaterialIconVariant<'a>,
+    pub variant: MaterialIconVariant,
 }
 
 /// Variants (also called categories) of the Material Icon font
 ///
 /// See all variants [here](https://fonts.google.com/icons?selected=Material+Icons).
-#[derive(PartialEq)]
-pub enum MaterialIconVariant<'a> {
+#[derive(PartialEq, Clone)]
+pub enum MaterialIconVariant {
     /// Regular
     ///
     /// Also called Filled.
@@ -93,7 +93,7 @@ pub enum MaterialIconVariant<'a> {
     ///
     /// Provide an url to a ttf or otf file.
     /// You can download the files [here](https://github.com/google/material-design-icons/tree/master/font).
-    SelfHosted(&'a str),
+    SelfHosted(String),
 }
 
 /// Stylesheet component
@@ -106,12 +106,13 @@ pub enum MaterialIconVariant<'a> {
 /// please use [`MaterialIconVariant::SelfHosted`](MaterialIconVariant::SelfHosted) and pass the
 /// file path or url to your .ttf or .otf file to it.
 /// See the [button example](https://github.com/lennartkloock/dioxus-material-icons/blob/main/examples/button.rs).
-pub fn MaterialIconStylesheet<'a>(cx: Scope<'a, MaterialIconStylesheetProps<'a>>) -> Element<'a> {
-    let href = match &cx.props.variant {
+pub fn MaterialIconStylesheet(props: MaterialIconStylesheetProps) -> Element {
+    let href = match &props.variant {
         MaterialIconVariant::SelfHosted(file) => {
-            return cx.render(rsx!(
-                style { format!(include_str!("./self-hosted-styles.css"), file) }
-            ));
+            let style_content = format!(include_str!("./self-hosted-styles.css"), file);
+            return rsx!(
+                style { "{style_content}" }
+            );
         }
         MaterialIconVariant::Regular => "https://fonts.googleapis.com/icon?family=Material+Icons",
         MaterialIconVariant::Outlined => {
@@ -127,19 +128,19 @@ pub fn MaterialIconStylesheet<'a>(cx: Scope<'a, MaterialIconStylesheetProps<'a>>
             "https://fonts.googleapis.com/icon?family=Material+Icons+Two+Tone"
         }
     };
-    cx.render(rsx!(link {
+    rsx!(link {
         href: "{href}",
         rel: "stylesheet"
-    }))
+    })
 }
 
 /// Props for the [`MaterialIcon`](MaterialIcon) component
-#[derive(Props, PartialEq)]
-pub struct MaterialIconProps<'a> {
+#[derive(Props, Clone, PartialEq)]
+pub struct MaterialIconProps {
     /// Name (e.g. `home`)
     ///
     /// Browse all icons [here](https://fonts.google.com/icons?selected=Material+Icons).
-    pub name: &'a str,
+    pub name: String,
     /// Size in pixels
     ///
     /// Optional
@@ -147,15 +148,14 @@ pub struct MaterialIconProps<'a> {
     /// Color
     ///
     /// Optional
-    #[props(into)]
-    pub color: Option<MaterialIconColor<'a>>,
+    pub color: Option<MaterialIconColor>,
 }
 
 /// Colors of Material Icons
 ///
 /// As described [here](https://developers.google.com/fonts/docs/material_icons#styling_icons_in_material_design).
-#[derive(PartialEq)]
-pub enum MaterialIconColor<'a> {
+#[derive(PartialEq, Clone)]
+pub enum MaterialIconColor {
     /// For using icons as black on a light background.
     Dark,
     /// For using icons as black on a light background.
@@ -167,16 +167,16 @@ pub enum MaterialIconColor<'a> {
     /// Custom color, any valid CSS color
     ///
     /// E.g.: `#0000ff` or `red`
-    Custom(&'a str),
+    Custom(String),
 }
 
-impl<'a> From<&'a str> for MaterialIconColor<'a> {
-    fn from(value: &'a str) -> Self {
+impl From<String> for MaterialIconColor {
+    fn from(value: String) -> Self {
         Self::Custom(value)
     }
 }
 
-impl MaterialIconColor<'_> {
+impl MaterialIconColor {
     /// Converts the color to its corresponding CSS color
     pub fn to_css_color(&self) -> &str {
         match self {
@@ -192,24 +192,22 @@ impl MaterialIconColor<'_> {
 /// Material Icon component
 ///
 /// This component can be used to render a Material Icon.
-pub fn MaterialIcon<'a>(cx: Scope<'a, MaterialIconProps<'a>>) -> Element<'a> {
+pub fn MaterialIcon(props: MaterialIconProps) -> Element {
     // The `font-size` attribute has to be explicitly declared as `inherit` because the stylesheet sets a default of 24px
-    let css_size = cx
-        .props
+    let css_size = props
         .size
         .map(|s| format!("{s}px"))
         .unwrap_or_else(|| "inherit".to_string());
-    let css_color = cx
-        .props
+    let css_color = props
         .color
         .as_ref()
         .map(|c| format!("color: {};", c.to_css_color()))
         .unwrap_or_default();
-    cx.render(rsx!(
+    rsx! {
         span {
             class: "material-icons material-icons-outlined material-icons-round material-icons-sharp material-icons-two-tone md-48",
             style: "font-size: {css_size}; {css_color} user-select: none;",
-            cx.props.name
+            "{props.name}"
         }
-    ))
+    }
 }

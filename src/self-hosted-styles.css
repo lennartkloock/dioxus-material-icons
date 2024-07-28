@@ -9,7 +9,7 @@ Therefore all curly braces must be escaped.
     font-weight: 400;
     src: local('Material Icons'),
     local('MaterialIcons-Regular'),
-    url({}) format('opentype');
+    url({}), format('truetype');
 }}
 
 .material-icons {{

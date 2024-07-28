@@ -15,7 +15,6 @@ name = "button"
 path = "examples/button.rs"
 
 [dependencies]
-dioxus = "0.4.3"
-
-[dev-dependencies]
-dioxus-desktop = "0.4.3"
+dioxus = { version = "0.5.6", features = ["web"]}
+# Debug
+dioxus-logger = "0.5.1"

@@ -112,12 +112,20 @@ pub fn MaterialIconStylesheet(props: MaterialIconStylesheetProps) -> Element {
             return rsx!(
                 style { {format!(include_str!("./self-hosted-styles.css"), file)} }
             );
-        },
+        }
         MaterialIconVariant::Regular => "https://fonts.googleapis.com/icon?family=Material+Icons",
-        MaterialIconVariant::Outlined => "https://fonts.googleapis.com/icon?family=Material+Icons+Outlined",
-        MaterialIconVariant::Round => "https://fonts.googleapis.com/icon?family=Material+Icons+Round",
-        MaterialIconVariant::Sharp => "https://fonts.googleapis.com/icon?family=Material+Icons+Sharp",
-        MaterialIconVariant::TwoTone => "https://fonts.googleapis.com/icon?family=Material+Icons+Two+Tone",
+        MaterialIconVariant::Outlined => {
+            "https://fonts.googleapis.com/icon?family=Material+Icons+Outlined"
+        }
+        MaterialIconVariant::Round => {
+            "https://fonts.googleapis.com/icon?family=Material+Icons+Round"
+        }
+        MaterialIconVariant::Sharp => {
+            "https://fonts.googleapis.com/icon?family=Material+Icons+Sharp"
+        }
+        MaterialIconVariant::TwoTone => {
+            "https://fonts.googleapis.com/icon?family=Material+Icons+Two+Tone"
+        }
     };
     rsx!(link {
         href: "{href}",
@@ -192,7 +200,10 @@ pub fn IconColor<T: Into<String>>(color: T) -> MaterialIconColor {
 /// This component can be used to render a Material Icon.
 pub fn MaterialIcon(props: MaterialIconProps) -> Element {
     // The `font-size` attribute has to be explicitly declared as `inherit` because the stylesheet sets a default of 24px
-    let css_size = props.size.map(|s| format!("{s}px")).unwrap_or_else(|| "inherit".to_string());
+    let css_size = props
+        .size
+        .map(|s| format!("{s}px"))
+        .unwrap_or_else(|| "inherit".to_string());
     let css_color = props
         .color
         .as_ref()

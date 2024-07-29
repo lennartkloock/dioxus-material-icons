@@ -1,8 +1,3 @@
-/*
- * @Date: 2024-07-28 03:54:25
- * @LastEditTime: 2024-07-28 17:39:06
- */
-
 #![allow(non_snake_case)]
 
 //! # Button Example
@@ -27,8 +22,7 @@ fn App() -> Element {
         }
 
         button {
-            style: "display:flex; flex-direction: column; align-items: center;
-             padding: 10; font-size: 24px; color: inherit; background-color: transparent; border: none;",
+            style: "padding: 1rem; font-size: 1rem; display:flex; flex-direction: column; align-items: center;",
             onclick: move |_| is_blue.set(!is_blue()),
             // The size prop was omitted, so both icons inherit their size from the button element above
             if is_blue() {

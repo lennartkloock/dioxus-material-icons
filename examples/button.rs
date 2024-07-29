@@ -6,32 +6,33 @@
 //! color of the icon.
 
 use dioxus::prelude::*;
-
-use dioxus_material_icons::{MaterialIcon, MaterialIconStylesheet, MaterialIconVariant};
+use dioxus_material_icons::{IconColor, MaterialIcon, MaterialIconStylesheet, MaterialIconVariant};
 
 fn main() {
-    dioxus_desktop::launch(App);
+    dioxus::launch(App);
 }
 
-fn App(cx: Scope) -> Element {
-    let is_blue = use_state(&cx, || false);
+fn App() -> Element {
+    let mut is_blue = use_signal(|| false);
 
-    cx.render(rsx!(
+    rsx!(
         MaterialIconStylesheet {
             // Uses the self-hosted approach
-            variant: MaterialIconVariant::SelfHosted("examples/assets/MaterialIcons-Regular.ttf")
+            variant: MaterialIconVariant::SelfHosted("examples/assets/MaterialIcons-Regular.woff2")
         }
+
         button {
-            style: "padding: 10; font-size: 48px;",
-            onclick: move |_| is_blue.set(!is_blue),
+            style: "padding: 1rem; font-size: 1rem; display:flex; flex-direction: column; align-items: center;",
+            onclick: move |_| is_blue.set(!is_blue()),
             // The size prop was omitted, so both icons inherit their size from the button element above
-            if *is_blue.get() {
+            if is_blue() {
                 // Render material icon "home" in blue
-                rsx!(MaterialIcon { name: "home", color: "blue" })
+                MaterialIcon { name: "home", size: 48, color: IconColor("blue")  }
             } else {
                 // Render material icon "home" in default color
-                rsx!(MaterialIcon { name: "home" })
-            }
+                MaterialIcon { name: "home", size: 48 }
+            },
+            "Home"
         }
-    ))
+    )
 }

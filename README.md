@@ -59,4 +59,4 @@ This software is licensed under the terms of the MIT License.
 
 Note: All Material Icons are licensed under the Apache License 2.0.
 
-&copy; 2023 Lennart Kloock
+&copy; 2024 Lennart Kloock

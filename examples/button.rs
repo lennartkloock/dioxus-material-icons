@@ -18,7 +18,9 @@ fn App() -> Element {
     rsx!(
         MaterialIconStylesheet {
             // Uses the self-hosted approach
-            variant: MaterialIconVariant::SelfHosted("examples/assets/MaterialIcons-Regular.woff2")
+            variant: MaterialIconVariant::SelfHosted(
+                asset!("/examples/assets/MaterialIcons-Regular.woff2").to_string(),
+            ),
         }
 
         button {
@@ -27,11 +29,11 @@ fn App() -> Element {
             // The size prop was omitted, so both icons inherit their size from the button element above
             if is_blue() {
                 // Render material icon "home" in blue
-                MaterialIcon { name: "home", size: 48, color: IconColor("blue")  }
+                MaterialIcon { name: "home", size: 48, color: IconColor("blue") }
             } else {
                 // Render material icon "home" in default color
                 MaterialIcon { name: "home", size: 48 }
-            },
+            }
             "Home"
         }
     )

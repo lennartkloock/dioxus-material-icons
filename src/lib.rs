@@ -93,7 +93,7 @@ pub enum MaterialIconVariant {
     ///
     /// Provide an url to a ttf or otf file.
     /// You can download the files [here](https://github.com/google/material-design-icons/tree/master/font).
-    SelfHosted(&'static str),
+    SelfHosted(String),
 }
 
 /// Stylesheet component
@@ -127,10 +127,9 @@ pub fn MaterialIconStylesheet(props: MaterialIconStylesheetProps) -> Element {
             "https://fonts.googleapis.com/icon?family=Material+Icons+Two+Tone"
         }
     };
-    rsx!(link {
-        href: "{href}",
-        rel: "stylesheet"
-    })
+    rsx!(
+        document::Link { href: "{href}", rel: "stylesheet" }
+    )
 }
 
 /// Props for the [`MaterialIcon`](MaterialIcon) component

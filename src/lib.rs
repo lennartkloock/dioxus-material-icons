@@ -127,9 +127,10 @@ pub fn MaterialIconStylesheet(props: MaterialIconStylesheetProps) -> Element {
             "https://fonts.googleapis.com/icon?family=Material+Icons+Two+Tone"
         }
     };
-    rsx!(
-        document::Link { href: "{href}", rel: "stylesheet" }
-    )
+    rsx!(document::Link {
+        href: "{href}",
+        rel: "stylesheet"
+    })
 }
 
 /// Props for the [`MaterialIcon`](MaterialIcon) component

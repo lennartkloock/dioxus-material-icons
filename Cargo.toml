@@ -5,7 +5,6 @@ edition = "2021"
 license = "MIT"
 description = "Material Icons for Dioxus"
 repository = "https://github.com/lennartkloock/dioxus-material-icons"
-homepage = "https://lennart.codes/dioxus-material-icons"
 keywords = ["dioxus", "material-design", "icons", "ui", "gui"]
 categories = ["web-programming", "gui"]
 readme = "README.md"
